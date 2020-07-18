@@ -10,7 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 //@DiscriminatorValue(value = "NTS")//not required in case of join type
-@PrimaryKeyJoinColumn(referencedColumnName = "staffId")//foreign key - column name of parent class
+//@PrimaryKeyJoinColumn(referencedColumnName = "staffId")//foreign key - column name of parent class
 @Entity
 @Getter @Setter @ToString @NoArgsConstructor @AllArgsConstructor
 public class NonTeachingStaff extends Staff {
