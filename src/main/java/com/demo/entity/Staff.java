@@ -14,7 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @DiscriminatorColumn(name = "type")//optional default table name is like dtype
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)//if we remove by default it will work like single table
+@Inheritance(strategy = InheritanceType.JOINED)//making 3 table total, 1 for staff contain below fields, and others for its 2 child class
 @Entity
 @Data @NoArgsConstructor
 public class Staff implements Serializable{
