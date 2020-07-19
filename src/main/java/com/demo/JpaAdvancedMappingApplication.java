@@ -1,5 +1,7 @@
 package com.demo;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -59,6 +61,8 @@ public class JpaAdvancedMappingApplication implements CommandLineRunner{
 		e.setEmail("hariom@gmail.com");
 		e.getMobileNumbers().add("9887700499");
 		e.getMobileNumbers().add("9876543210");
+		//e.setLocalDate(LocalDate.now());//testing local date entity field - working
+//		e.setLocalDate(LocalDate.now().minusDays(1));//testing local date entity field - @past annotaion
 		entityValidationDB.save(e);
 	}
 

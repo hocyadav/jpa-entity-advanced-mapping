@@ -1,5 +1,6 @@
 package com.demo.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +39,9 @@ public class EntityValidation {
 	//@OneToOne //working - 1 new column added with name staff
 	@ManyToOne //working - --"--
 	Staff staff;
+	
+	@Past//take old dates
+	LocalDate localDate;
 	
 	public EntityValidation(@NotNull String name) {
 		super();
