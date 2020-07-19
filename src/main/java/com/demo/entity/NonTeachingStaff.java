@@ -12,4 +12,10 @@ import lombok.ToString;
 @Getter @Setter @ToString @NoArgsConstructor @AllArgsConstructor
 public class NonTeachingStaff extends Staff {
 	String areaExpertise;
+
+	public NonTeachingStaff(String staffName, String areaExpertise) {
+		super(staffName);
+		this.areaExpertise = areaExpertise;
+	}
+	
 }

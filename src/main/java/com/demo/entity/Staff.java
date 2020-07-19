@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,8 @@ public class Staff{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int staffId;
+	
+	@NotNull(message = "staffName is required")
 	String staffName;
 
 	public Staff(String staffName) {

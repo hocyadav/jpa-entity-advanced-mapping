@@ -5,10 +5,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.demo.dao.EntityVDAO;
 import com.demo.dao.RelationDAO;
 import com.demo.dao.StaffDAO;
 import com.demo.dao.TStaffDAO;
 import com.demo.entity.RelationTest;
+import com.demo.entity.EntityValidation;
 import com.demo.entity.NonTeachingStaff;
 import com.demo.entity.TeachingStaff;
 
@@ -23,15 +25,29 @@ public class JpaAdvancedMappingApplication implements CommandLineRunner{
 	@Autowired TStaffDAO tstaffDB;
 	@Autowired RelationDAO relationTestDB;
 	
+	@Autowired EntityVDAO entityValidationDB;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		dummyStaffData();
 		dummyRelationData();
+		entityValidation();
 		
 		/** print db data **/
 		staffDB.findAll().forEach(System.out::println);
 		System.out.println("-------------------------");
 		tstaffDB.findAll().forEach(System.out::println);
+	}
+
+	private void entityValidation() {
+		//EntityValidation e = new EntityValidation(1, "omprakash");//working interally it is saving different id
+		//EntityValidation e = new EntityValidation(1, null);//testing null - working
+		EntityValidation e = new EntityValidation("omprakash");//working
+		//e.setEmail("hariomgmail.com");//testing - working
+		e.setEmail("hariom@gmail.com");
+		e.getMobileNumbers().add("9887700499");
+		e.getMobileNumbers().add("9876543210");
+		entityValidationDB.save(e);
 	}
 
 	private void dummyRelationData() {
@@ -44,13 +60,14 @@ public class JpaAdvancedMappingApplication implements CommandLineRunner{
 	}
 
 	private void dummyStaffData() {
-		staffDB.save(new TeachingStaff("M tech", "physics"));
-		staffDB.save(new TeachingStaff("B Tech", "chemistry"));
-		staffDB.save(new TeachingStaff("Phd", "maths"));
-		staffDB.save(new TeachingStaff("M Sc", "science"));
-		staffDB.save(new TeachingStaff("M Tech", "english"));
+		staffDB.save(new TeachingStaff("hari", "M tech", "physics"));
+		staffDB.save(new TeachingStaff("om", "B Tech", "chemistry"));
+		staffDB.save(new TeachingStaff("yadav","Phd", "maths"));
+		staffDB.save(new TeachingStaff("neha", "M Sc", "science"));
+		staffDB.save(new TeachingStaff("chandan", "M Tech", "english"));
+		//staffDB.save(new TeachingStaff("M Tech", null));//for testing null - working
 
-		staffDB.save(new NonTeachingStaff("expert in maths"));
+		staffDB.save(new NonTeachingStaff("rajat","expert in maths"));
 	}
 
 
