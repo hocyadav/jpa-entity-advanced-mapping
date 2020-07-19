@@ -5,14 +5,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.demo.dao.DogDAO;
 import com.demo.dao.EntityVDAO;
 import com.demo.dao.RelationDAO;
 import com.demo.dao.StaffDAO;
 import com.demo.dao.TStaffDAO;
-import com.demo.entity.RelationTest;
 import com.demo.entity.EntityValidation;
 import com.demo.entity.NonTeachingStaff;
+import com.demo.entity.RelationTest;
 import com.demo.entity.TeachingStaff;
+import com.demo.entity.embeddable.Animal;
+import com.demo.entity.embeddable.Dog;
 
 @SpringBootApplication
 public class JpaAdvancedMappingApplication implements CommandLineRunner{
@@ -26,17 +29,26 @@ public class JpaAdvancedMappingApplication implements CommandLineRunner{
 	@Autowired RelationDAO relationTestDB;
 	
 	@Autowired EntityVDAO entityValidationDB;
+	@Autowired DogDAO dogDb;
 	
 	@Override
 	public void run(String... args) throws Exception {
 		dummyStaffData();
 		dummyRelationData();
 		entityValidation();
+		entityEmbeddableTest();
 		
 		/** print db data **/
 		staffDB.findAll().forEach(System.out::println);
 		System.out.println("-------------------------");
 		tstaffDB.findAll().forEach(System.out::println);
+	}
+
+	private void entityEmbeddableTest() {
+		Dog d = new Dog();
+		d.setAnimalObj(new Animal("type1", "bangalore"));//optional - without this null entry
+		d.setDogCat("indian");
+		dogDb.save(d);
 	}
 
 	private void entityValidation() {
