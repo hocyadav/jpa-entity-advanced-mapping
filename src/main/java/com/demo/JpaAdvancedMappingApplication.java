@@ -19,6 +19,7 @@ import com.demo.entity.TeachingStaff;
 import com.demo.entity.embeddable.Animal;
 import com.demo.entity.embeddable.Dog;
 
+/** https://examples.javacodegeeks.com/spring-boot-bean-validation-example/ **/
 @SpringBootApplication
 public class JpaAdvancedMappingApplication implements CommandLineRunner{
 
